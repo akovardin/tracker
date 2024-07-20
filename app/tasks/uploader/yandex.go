@@ -39,6 +39,11 @@ func (t *Task) yandex(tracker *models.Record) error {
 		return err
 	}
 
+	if len(records) == 0 {
+		t.app.Logger().Warn("empty yandex conversion")
+		return nil
+	}
+
 	yaurl := tracker.GetString("yaurl")
 	yatoken := tracker.GetString("yatoken")
 
