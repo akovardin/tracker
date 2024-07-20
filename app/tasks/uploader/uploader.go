@@ -45,4 +45,6 @@ func (t *Task) Do() {
 			t.app.Logger().Error("error on upload vk conversions", "error", err)
 		}
 	}
+
+	t.app.Logger().Info("finish upload conversions")
 }

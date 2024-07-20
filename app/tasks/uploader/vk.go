@@ -8,11 +8,11 @@ import (
 func (t *Task) vk(tracker *models.Record) error {
 	records, err := t.app.Dao().FindRecordsByFilter(
 		"conversions",
-		"uploaded = false && network = 'vk' && landing = {:landing}",
+		"uploaded = false && network = 'vk' && tracker = {:tracker}",
 		"-created",
 		10, // limit
 		0,
-		dbx.Params{"landing": tracker.Id},
+		dbx.Params{"tracker": tracker.Id},
 	)
 
 	_ = records
