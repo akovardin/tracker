@@ -2,6 +2,7 @@ package uploader
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/pocketbase/pocketbase"
 )
@@ -9,12 +10,19 @@ import (
 type Task struct {
 	app    *pocketbase.PocketBase
 	client *http.Client
+	loc    *time.Location
 }
 
 func New(app *pocketbase.PocketBase) *Task {
+	location, err := time.LoadLocation("Europe/Moscow")
+	if err != nil {
+		panic(err)
+	}
+
 	return &Task{
 		app:    app,
 		client: &http.Client{},
+		loc:    location,
 	}
 }
 

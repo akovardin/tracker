@@ -69,7 +69,7 @@ func (t *Task) yandex(tracker *models.Record) error {
 			//item.ClientId,
 			record.GetString("yclid"),
 			"app_install",
-			strconv.Itoa(int(record.Created.Time().Unix())),
+			strconv.Itoa(int(record.Created.Time().In(t.loc).Unix())),
 		}); err != nil {
 			t.app.Logger().Warn("error on write csv row", "error", err)
 			continue
