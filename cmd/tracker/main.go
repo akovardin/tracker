@@ -83,8 +83,7 @@ func task(app *pocketbase.PocketBase, uploader *uploader.Task) {
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
 		scheduler := cron.New()
 
-		// prints "Hello!" every 2 minutes
-		scheduler.MustAdd("hello", "*/30 * * * *", func() {
+		scheduler.MustAdd("hello", "0 */1 * * *", func() {
 			uploader.Do()
 		})
 

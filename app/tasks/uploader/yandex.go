@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"strconv"
+	"time"
 
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase/models"
@@ -26,13 +27,14 @@ type UploadResponse struct {
 }
 
 func (t *Task) yandex(tracker *models.Record) error {
+	to := time.Now().Add(-time.Hour * 4).Format("2006-01-02 15:04:05")
 	records, err := t.app.Dao().FindRecordsByFilter(
 		"conversions",
-		"uploaded = false && network = 'yandex' && tracker = {:tracker}",
+		"uploaded = false && network = 'yandex' && tracker = {:tracker} && created < {:to}",
 		"-created",
-		10, // limit
+		100, // limit
 		0,
-		dbx.Params{"tracker": tracker.Id},
+		dbx.Params{"tracker": tracker.Id, "to": to},
 	)
 
 	if err != nil {
