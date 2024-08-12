@@ -49,10 +49,6 @@ func (t *Task) yandex(tracker *models.Record) error {
 	yaurl := tracker.GetString("yaurl")
 	yatoken := tracker.GetString("yatoken")
 
-	// create all body
-	body := &bytes.Buffer{}
-	// create writer for body
-	writer := multipart.NewWriter(body)
 	// create conversions file data
 	data := &bytes.Buffer{}
 	// create writer for conversions file data
@@ -79,6 +75,11 @@ func (t *Task) yandex(tracker *models.Record) error {
 	}
 
 	file.Flush()
+
+	// create all body
+	body := &bytes.Buffer{}
+	// create writer for body
+	writer := multipart.NewWriter(body)
 
 	part, _ := writer.CreateFormFile("file", "file.csv")
 	if _, err := io.Copy(part, data); err != nil {

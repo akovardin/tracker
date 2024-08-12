@@ -34,7 +34,7 @@ func (t *Task) Do() {
 		"tracker",
 		"enabled = true && network = 'yandex'",
 		"-created",
-		10, // limit
+		100, // limit
 		0,
 	)
 
