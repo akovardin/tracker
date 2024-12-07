@@ -1,4 +1,4 @@
-module gohome.4gophers.ru/kovardin/tracker
+module gohome.4gophers.ru/kovardin/vzor
 
 go 1.22.2
 

@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "cmd/tracker",
+            "name": "cmd/vzor",
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "cmd/tracker/",
+            "program": "cmd/vzor/",
             "envFile": "${workspaceFolder}/local.env",
             "cwd": "${workspaceFolder}",
             "args": [
